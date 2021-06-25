@@ -1,0 +1,9 @@
+package br.com.devcave.hexagonal.mybank.common
+
+data class Bank(
+    val id: Long,
+
+    val name: String,
+
+    val iban: String
+)

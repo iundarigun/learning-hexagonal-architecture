@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: my-bank
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mybank
+    username: mybank
+    password: mybank
+  jpa:
+    show-sql: true
+    open-in-view: false
+
+  flyway:
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    ignore-missing-migrations: true
+    out-of-order: true
