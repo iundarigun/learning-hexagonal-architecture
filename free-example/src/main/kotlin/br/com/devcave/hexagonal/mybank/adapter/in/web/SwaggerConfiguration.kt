@@ -1,4 +1,4 @@
-package br.com.devcave.hexagonal.mybank.common.configuration
+package br.com.devcave.hexagonal.mybank.adapter.`in`.web
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
