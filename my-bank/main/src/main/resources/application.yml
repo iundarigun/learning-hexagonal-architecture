@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: my-bank
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mybank
+    username: mybank
+    password: mybank
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 1980
