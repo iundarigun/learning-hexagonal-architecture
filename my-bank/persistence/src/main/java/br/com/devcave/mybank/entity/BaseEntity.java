@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class BaseEntity {
 
     @Version
-    private Long version;
+    private Long version = 0L;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
