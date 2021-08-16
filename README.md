@@ -317,4 +317,39 @@ We might for example define different mapping guidelines to modifying use cases 
 
 This selection of mapping strategies per situation certainly is harder and requires more communication than simply using the same mapping strategy for all situations
 
+## Taking Shortcuts Consciously
+
+### Sharing Models between Use Cases
+The effect of sharing are coupled to each other. If we change something within the shared both use cases are affected. They share a reason to change in terms of the Single Responsibility Principle.
+
+Sharing input and output models between use cases is valid if the use cases are functionally bound, because we actually want both use cases to be affected if we change a certain detail. If both use cases should be able to evolve separately from each other we should separate the use cases from the start
+
+### Using Domain Entities as Input or Output Model
+If we have a domain entity and an incoming port, we might be tempted to use the entity as the input and/or output model of the incoming port. The incoming port has a dependency to the domain entity. The consequence of this is that we’ve added another reason for the Account entity to change.
+
+For simple create or update use cases, a domain entity in the use case interface may be fine, since the entity contains exactly the information we need to persist its state in the database.
+
+What makes this shortcut dangerous is the fact that many use cases start their lives as a simple create or update use case only to become beasts of complex domain logic over time
+
+### Skipping Incoming Ports
+While the outgoing ports are necessary to invert the dependency between the application and the outgoing adapters, we don’t need the incoming ports for dependency inversion. We could decide to let the incoming adapters access our application services directly.
+
+By removing the incoming ports, we have reduced a layer of abstraction between incoming adapters and the application layer. Once we remove them, we must know more about the internals of our application to find out which service method we can call to implement a certain use case. This makes every entry point into the application layer a very conscious decision.
+
+### Skipping Application Services
+For certain use cases we might want to skip the application layer as a whole an outgoing adapter directly implements an incoming port and replaces the application service. It is very tempting to do this for simple CRUD use cases, since in this case an application service usually only forwards a create, update or delete request to the persistence adapter. This, however, requires a shared model between the incoming adapter and the outgoing adapter
+
+### Conclusion
+
+There are times when shortcuts make sense from an economic point of view. It’s tempting to introduce shortcuts for simple CRUD use cases, since for them, implementing the whole architecture feels like overkill (and the shortcuts don’t feel like shortcuts)
+
+## Deciding on an Architecture Style
+
+When should we actually use the hexagonal architecture style? 
+- Evolving domain code free from external influence is the single most important argument for the hexagonal architecture style. 
+- This is why this architecture style is such a good match for DDD practices. 
+- If the domain code is not the most important thing in your application, you probably don’t need this architecture style.
+
+It depends on the type of software to be built. It depends on the role of the domain code. It depends on the experience of the team.
+
 
