@@ -15,6 +15,7 @@ import br.com.devcave.mybank.bank.port.out.UpdateAccountPort;
 import br.com.devcave.mybank.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +28,7 @@ public class TransferMoneyService implements TransferMoneyUseCase {
     private final CreateMovementPort createMovementPort;
 
     @Override
+    @Transactional
     public String transferMoney(final TransferMoneyCommand command) {
         final LockedEntity<Account> originAccount = loadAccountPort.getAndLockAccount(command.getAccountOriginId())
                 .orElseThrow(() -> new EntityNotFoundException(Account.class));

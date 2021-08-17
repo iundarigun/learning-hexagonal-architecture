@@ -28,6 +28,7 @@ public class WithdrawFromAccountService implements WithdrawFromAccountUseCase {
     private final CreateMovementPort createMovementPort;
 
     @Override
+    @Transactional
     public String withdrawFromAccount(final WithdrawFromAccountCommand command) {
         final LockedEntity<Account> account = loadAccountPort.getAndLockAccount(command.getAccountId())
                 .orElseThrow(() -> new EntityNotFoundException(Account.class));
