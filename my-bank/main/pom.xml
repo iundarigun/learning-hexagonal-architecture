@@ -9,7 +9,7 @@
     <parent>
         <artifactId>my-bank</artifactId>
         <groupId>br.com.devcave</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -23,5 +23,20 @@
             <artifactId>my-bank-persistence</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <layers>
+                        <enabled>true</enabled>
+                        <configuration>layers.xml</configuration>
+                    </layers>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
