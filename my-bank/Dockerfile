@@ -8,7 +8,7 @@ RUN mvn clean package -DskipTests
 RUN mv /root/main/target/*.jar /root/app.jar
 RUN java -Djarmode=layertools -jar /root/app.jar extract
 
-FROM 828770992256.dkr.ecr.eu-west-1.amazonaws.com/services-image:jdk-15
+FROM openjdk:17.0.2-slim
 WORKDIR /var/app
 COPY --from=0 /root/dependencies/ ./
 COPY --from=0 /root/spring-boot-loader/ ./
